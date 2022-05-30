@@ -1,5 +1,5 @@
 <Introdution>
-In the session, we would install anaconda and tensorflow(CPU & GPU).
+In the section, we would install anaconda and tensorflow(CPU & GPU).
 
 <Part One>      Anaconda Installation
 Download and install Anaconda, here is the official download page.  https://www.anaconda.com/
@@ -74,5 +74,5 @@ If the answer be like below, congratulations! Tensorflow GPU version has been in
 >> [PhysicalDevice(name='/physical_device:GPU:0', device_type='GPU')]
 
 <Conclusion>
-This session is important, <Part Four> needs to be repeatedly confirmed if you want to use tensorflow-gpu!
+This section is important, <Part Four> needs to be repeatedly confirmed if you want to use tensorflow-gpu!
 That's all, next to '2. TensorFlow Object Detection API Installation'.
