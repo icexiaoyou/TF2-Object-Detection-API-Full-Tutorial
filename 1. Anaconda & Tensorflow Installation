@@ -3,13 +3,13 @@ In the session, we would install anaconda and tensorflow(CPU & GPU).
 
 <Part One>      Anaconda Installation
 Download and install Anaconda, here is the official download page.  https://www.anaconda.com/
-(Recommand) Anaconda works almost perfect if it is installed in 'C:\', therefore I strongly recommend installing it on the C drive derectly.When you finish it, you 
-could find 'Anaconda Navigator' in the 'Start Menu'. For convenience, a desktop shortcut could be created for it.
+(Recommand) Anaconda works almost perfect if it is installed in 'C:\', therefore I strongly recommend installing it on the C drive derectly.When you finish it, 
+you could find 'Anaconda Navigator' in the 'Start Menu'. For convenience, a desktop shortcut could be created for it.
 Run 'Anaconda Navigator' to confirm if it work correctly.
 
 <Part Two>      Tensorflow CPU Version Installation and verification
-For the newer, after you open 'Anaconda Navigator', you could find 'Environment' on the left, click it and you could find 'Create' button. In the window, fill in the
-following information, 'Name: tensorflow', 'Python: 3.9.12'.
+For the newer, after you open 'Anaconda Navigator', you could find 'Environment' on the left, click it and you could find 'Create' button. In the window, 
+fill in the following information, 'Name: tensorflow', 'Python: 3.9.12'.
 In addition, you could run 'Anaconda Prompt' and type the following command:
 $ conda create -n tensorflow pip python=3.9   ......(1)
 After that, type the following command:
@@ -24,8 +24,8 @@ Notice: This tutorial use tensorflow-gpu-2.9.1
 If you get the report '2.9.1', it means that you have installed tensorflow-cpu-2.9.1 successfully!
 Before starting the steps below (<Part Three>), make sure your computer supports tensorflow GPU version, type the following command after the last print:
 $ tf.test.is_gpu_available()
-if the answer is 'True', you could follow <Part Three>; or 'False' means that your computer does not fit the tensorflow GPU version, skip from <Part Three> 
-to <Part Five>.
+if the answer is 'True', you could follow <Part Three>; or 'False' means that your computer does not fit the tensorflow GPU version, 
+skip from <Part Three> to <Part Five>.
 
 <Part Three>    Tensorflow GPU Version Installation
 To reduce possible errors during the installation process, it is strongly recommended to install both versions at the same time.
@@ -60,7 +60,7 @@ Cd 'Environment Variebles', choose the 'Path' from 'System Variebles', open the 
 >> C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\cudnn\bin
 >> C:\Windows\System32\zlib123dllx64\dll_x64\zlibwapi.dll
 Above paths are set under the default situation, you may make some changes according to your installation. For now, the configuration of 
-'NVIDIA GPU Computing Toolkit'   has been done.
+'NVIDIA GPU Computing Toolkit' has been done.
 If you meet some errors in this part, you can follow the NVIDIA offical guide in this url:
 https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#installcuda-windows
 
