@@ -1,0 +1,108 @@
+<Introdution>
+In this section, we would download and install Tensorflow Object Detection API.
+Before starting, I want to share my exprience of the API installation. After many failures in this section, I found that Python, tensorflow, 
+models(the most important composition in this section) and the other related API only works if the version match. Due to 'tensorflow\models' update frequently, 
+I downloaded it on May 30, 2022 and saved it on my Google Drive as following:
+https://drive.google.com/drive/folders/1C2jiSjEkfY_olasT7E9qkJpiyp51yGZZ?usp=sharing    ......(1)
+In the above path, 'protoc-3.19.4-win64.zip' is contained.
+
+<Part One>    Downloading the TensorFlow Model Garden
+Create a folder name 'Tensorflow', download the models-master form the google drive sharing link (1).
+Unzip it, put it under the 'Tensorflow' and then renamed as 'models'.
+
+<Part Two>    Visual Studio Community 2022 Installation
+Here is the official url of Visual Studio, choose the 'Community' version and download it.
+https://visualstudio.microsoft.com/zh-hans/vs/
+Install. Choose the 'C++ desktop development', it takes several minites even half an hour, needs 8~9 Gb. (Recommand: Install in C drive)
+
+<Part Three>  Protobuf Installation Configuration and Compilation
+This part may be hard for the newer, but it is the most important in this section.
+A. Download and Installation
+Tensorflow-models downloaded from the google drive sharing link (1), asking for the support of the compliation of Protobuf. For avoiding the unneccessary problems,
+I recommand you to download the Protobuf-3.19.4, which was saved on the google drive sharing link (1).
+Download and put it into 'C:\Program Files', rename the folder and the final path is:
+>> C:\Program Files\Google Protobuf
+B. Consiguration
+After that, run 'Environment Variables' and choose the 'System Variables', open 'Path' and add 'C:\Program Files\Google Protobuf\bin'.
+Cd into the 'C:\Program Files\Google Protobuf\bin', copy 'protoc.exe' to 'C:\Windows\System32'.
+C. Compilation
+Run 'Windows Shell' with the admin rights(root), cd into the '\Tensorflow\models\research' and type the following command. On my computer, 
+I put the 'Tensorflow' folder on desktop, and the procedure in command is:
+$ cd C:\Users\yjz\Desktop\Tensorflow\models\research
+$ protoc object_detection/protos/*.proto --python_out=.
+If the above command failed, change the second one and change to:
+$ Get-ChildItem object_detection/protos/*.proto | foreach {protoc "object_detection/protos/$($_.Name)" --python_out=.}
+Noting: In the 'C. Compilation', everytime you revise the environment variavble, open new 'Windows Shell' to avoid the unexpected error.
+
+<Part Four>   COCO API installation
+Run 'Anaconda Prompt', and type the below command one by one:
+$ activate tensorflow
+$ pip install cython
+$ pip install pycocotools
+
+<Part Five>   Install and Configurate the Object Detection API
+Copy the 'setup.py' from '\Tensorflow\models\research\object_detection\packages\tf2' and paste into '\Tensorflow\models\research'.Then, run 'Anaconda Prompt',
+on my computer, I type as below:
+$ activate tensorflow
+$ cd C:\Users\yjz\Desktop\Tensorflow\models\research
+$ python -m pip install --use-feature=2020-resolver .
+This may take more than half an hour, 'setup.py' contains the dependencies which make 'Tensorflow Object Detection API' work.
+After the installation, we need to configurate the PATHONPATH, please follow the below procedures.
+Run 'Environment Variables', create a new veriable and named 'PATHONPATH' (If the veriable has been existed, open it but not create).
+Variable Name: PYTHONPATH
+Variable Value: C:\Users\yjz\Desktop\Tensorflow\models;C:\Users\yjz\Desktop\Tensorflow\models\research;C:\Users\yjz\Desktop\Tensorflow\models\research\slim
+You should change the path according to the 'Tensorflow' path on your computer.
+
+<Part Six>    Test your Installation
+Close the old one and open the new 'Anaconda Prompt', type and run the following command (command on my computer):
+$ activate tensorflow
+$ cd C:\Users\yjz\Desktop\Tensorflow\models\research
+$ python object_detection/builders/model_builder_tf2_test.py
+If you do not meet any errors, and the report shows like the following:
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+...
+[       OK ] ModelBuilderTF2Test.test_create_ssd_models_from_config
+[ RUN      ] ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update
+INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update): 0.0s
+I0608 18:49:13.183754 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update): 0.0s
+[       OK ] ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update
+[ RUN      ] ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold
+INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold): 0.0s
+I0608 18:49:13.186750 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold): 0.0s
+[       OK ] ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold
+[ RUN      ] ModelBuilderTF2Test.test_invalid_model_config_proto
+INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_invalid_model_config_proto): 0.0s
+I0608 18:49:13.188250 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_invalid_model_config_proto): 0.0s
+[       OK ] ModelBuilderTF2Test.test_invalid_model_config_proto
+[ RUN      ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
+INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_invalid_second_stage_batch_size): 0.0s
+I0608 18:49:13.190746 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_invalid_second_stage_batch_size): 0.0s
+[       OK ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
+[ RUN      ] ModelBuilderTF2Test.test_session
+[  SKIPPED ] ModelBuilderTF2Test.test_session
+[ RUN      ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
+INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
+I0608 18:49:13.193742 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
+[       OK ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
+[ RUN      ] ModelBuilderTF2Test.test_unknown_meta_architecture
+INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
+I0608 18:49:13.195241 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
+[       OK ] ModelBuilderTF2Test.test_unknown_meta_architecture
+[ RUN      ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
+INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
+I0608 18:49:13.197239 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
+[       OK ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
+----------------------------------------------------------------------
+Ran 24 tests in 29.980s
+
+OK (skipped=1)
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+It means that you have install 'Tensorflow Object Detection API' successfully. 
+Congratulation!
+
+<Conclusion>
+If you can not pass the verification, firstly focus the <Part Three> and look for which step was ignored, errors mainly come from that part.
+In addition, every step in this part cannot be ignored.
+That's all, next to '4. Training Custom Object Detector'.
