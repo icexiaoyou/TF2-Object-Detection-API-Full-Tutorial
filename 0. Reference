@@ -5,4 +5,6 @@ https://github.com/sglvladi/TensorFlowObjectDetectionTutorial
 
 However, as the time passing by, something has changed. I follow the origin tutorial to configure the environment, errors occurs many times because . For helping every person to use tensorflow object detection API, the essay would update the official tutorial by myself, including downloading, installation and configuration. If you follow this tutorial and find some errors, please put the errors in detail in 'Issues', I believe that we could solve them together.
 
+Notice: The tutorial works on Windows 11, other OS like Linux and MacOS are not verified.
+
 That's all, next to '1. Anaconda & Tensorflow Installation'.
