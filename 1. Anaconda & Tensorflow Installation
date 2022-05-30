@@ -1,3 +1,51 @@
 In the session, we would install anaconda and tensorflow(CPU & GPU).
 
-Part One    Anaconda Installation
+
+
+<Part One>      Anaconda Installation
+
+Download and install Anaconda, here is the official download page.  https://www.anaconda.com/
+(Recommand) Anaconda works almost perfect if it is installed in 'C:\', therefore I strongly recommend installing it on the C drive derectly.When you finish it, you could find 'Anaconda Navigator' in the 'Start Menu'. For convenience, a desktop shortcut could be created for it.
+Run 'Anaconda Navigator' to confirm if it work correctly.
+
+<Part Two>      Tensorflow CPU Version Installation and verification
+
+For the newer, after you open 'Anaconda Navigator', you could find 'Environment' on the left, click it and you could find 'Create' button. In the window, fill in the following information, 'Name: tensorflow', 'Python: 3.9.12'.
+In addition, you could run 'Anaconda Prompt' and type the following command:
+$ conda create -n tensorflow pip python=3.9   ......(1)
+After that, type the following command:
+$ activate tensorflow
+$ pip install tensorflow==2.9.1
+This would last from a few minutes to half an hour, depending on your computer configuration and network conditions. 
+After that, now we should verify the installation, type the following command:
+$ import tensorflow as tf
+$ print(tf.__version__)
+Notice: This tutorial use tensorflow-gpu-2.9.1
+
+<Part Three>    Tensorflow GPU Version Installation
+To reduce possible errors during the installation process, it is strongly recommended to install both versions at the same time.
+If you have built the 'tensorflow' environment, skip (1). Type the following command:
+$ activate tensorflow
+$ pip install tensorflow-gpu==2.9.1
+After finish that, tensorflow GPU version do not work until <Part Four> done.
+
+<Part Four>     NVIDIA GPU Computing Toolkit
+Tensorflow GPU version ask for the suport by NVIDIA GPU Computing Toolkit, including 'GEFORCE EXPERIENCE', 'CUDA' and 'CUDNN'.
+A. 'GEFORCE EXPERIENCE'
+https://www.nvidia.cn/geforce/drivers/
+B. 'CUDA':
+https://developer.nvidia.com/cuda-downloads
+C. 'CUDNN':
+https://developer.nvidia.com/rdp/cudnn-download
+D. Download A, B and C, install them one by one. I recommand install 'CUDA' on the C drive. On my computer, 'CUDA' path is:
+>> C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2
+Unzip the 'CUDNN' zip and rename the folder as 'cudnn', copy it and put at the '\CUDA\v11.2\'. On my computer, 'CUDNN' path is:
+>> C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v11.2\cudnn
+E. Download zlib
+Click the below url, http://www.winimage.com/zLibDll/zlib123dllx64.zip
+A zip named 'zlib'
+
+F. Configuration
+
+
+<Part Five>     
