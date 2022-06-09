@@ -27,8 +27,17 @@ and process text. Therefore, this section will be introduced according to the fu
 Just like the above directory, ⅠⅡⅢ represent the folder level.
 
 <training_demo>
-These files under this folder are sorted by the time they used except "__pycache__" and "zlibapi.dll". "__pycache__" is automatically generated, "zlibapi.dll" is pasted from the follow directory:
+These files under this folder are sorted by the time they used except "__pycache__" and "zlibapi.dll". "__pycache__" is automatically generated, "zlibapi.dll"  
+is pasted from the follow directory:
 >> C:\Windows\System32\zlib123dllx64\dll_x64
 "images" contains the picture(.jpg/.png) and annotation(.xml).
-"scripts" contains the scripts of preprocessing and processing, you can find them in 
-""
+"scripts" contains the scripts of preprocessing and processing, you can find them in the repository.
+"annotations" contains "label_map.pbtxt", "train.record" and "test.record".
+"pre-trained-models" contains the models which could be download from TensorFlow 2 Detection Model Zoo.
+"models" contains "pipeline.config" which pasted from "pre-trained-models" and should be changed before our training work.
+"exported-models" contains "my_model" which have "checkpoint", "saved_model" and "pipeline.config", the resource to be loaded, saved and deployed.
+"verify-video" contains the videos which are used to verify the effective of "exported-models".
+
+<dataset>
+We want a "good" model to help us solve the specific problem, but things could not be easy at the beginning. The quality of exported models depends on whether  
+the pretrained model and dataset are suitable. To the newer, chasing
