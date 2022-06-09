@@ -1,6 +1,7 @@
 This Section aims to prepare the Wokrkspace for Making Dataset, Training, Verifying, Saving and Deploying the Model.
 
-The workspace is essentially composed of multiple folders with different functions. Based on sglvladi's work, I make some expansions to save the important scripts and process text. Therefore, this section will be introduced according to the function of each file, rather than the installation steps of a certain software. 
+The workspace is essentially composed of multiple folders with different functions. Based on sglvladi's work, I make some expansions to save the important scripts  
+and process text. Therefore, this section will be introduced according to the function of each file, rather than the installation steps of a certain software. 
 
 <File Directory>
 
@@ -23,4 +24,11 @@ The workspace is essentially composed of multiple folders with different functio
     Ⅲ commands
     Ⅲ tensorboard-pic
     
-Just like the above directory, ⅠⅡⅢ
+Just like the above directory, ⅠⅡⅢ represent the folder level.
+
+<training_demo>
+These files under this folder are sorted by the time they used except "__pycache__" and "zlibapi.dll". "__pycache__" is automatically generated, "zlibapi.dll" is pasted from the follow directory:
+>> C:\Windows\System32\zlib123dllx64\dll_x64
+"images" contains the picture(.jpg/.png) and annotation(.xml).
+"scripts" contains the scripts of preprocessing and processing, you can find them in 
+""
