@@ -1,0 +1,26 @@
+This Section aims to prepare the Wokrkspace for Making Dataset, Training, Verifying, Saving and Deploying the Model.
+
+The workspace is essentially composed of multiple folders with different functions. Based on sglvladi's work, I make some expansions to save the important scripts and process text. Therefore, this section will be introduced according to the function of each file, rather than the installation steps of a certain software. 
+
+<File Directory>
+
+Ⅰ Workspace
+  Ⅱ training_demo
+    Ⅲ __pycache__
+    Ⅲ zlibwapi.dll
+    Ⅲ images
+    Ⅲ scripts
+    Ⅲ annotations
+    Ⅲ pre-trained-models
+    Ⅲ models
+    Ⅲ exported-models
+    Ⅲ verify-video
+  Ⅱ dataset
+    Ⅲ dataset_0501
+    Ⅲ dataset_0601
+  Ⅱ readme
+    Ⅲ debug
+    Ⅲ commands
+    Ⅲ tensorboard-pic
+    
+Just like the above directory, ⅠⅡⅢ
