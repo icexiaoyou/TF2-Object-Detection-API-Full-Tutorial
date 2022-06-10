@@ -8,6 +8,7 @@ To install it, just use the Pypi, follow the below introduction.
 Run "Anaconda prompt", and type the below command:
 $ activate tensorflow
 $ pip install labelImg
+While the installation finished, you get a powerful application to annotate your pictures.
 
 <Part Two>    Take Pictures
 Accoding to Wiki, Object Detection is a computer technology related to computer vision and image processing that deals with detecting instances of semantic objects  
@@ -20,3 +21,11 @@ b. contrast   high contrast, object shoule be well distinguished from background
 c. angle      depends on the relative position of the camera and the object
 d. light      be as consistent as possible with the testing environment
 e. count      under the above conditions, an object (or name "a class") needs unless 150 pictures (my experience, for reference only)
+
+<Part Three>  Annotation
+Using labelImg to annotate your pictures. It is noting that we would use .xml which asks for Pascal VOC format.
+Thanks for tzutalin's work, lableImg is really easy to be used, and you could learn how to use it in the below url:
+https://github.com/tzutalin/labelImg
+Therefore, this essay would pass the details of using labelImg.
+
+<Part Four>   Generate Dataset
