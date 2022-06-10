@@ -43,7 +43,8 @@ $ activate tensorflow
 $ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
 $ python scripts\pre-process\partition_dataset.py -i images -r 0.2 -x
 See the final commands, it means that partition the picetures with annotation from "images" folder, and the ratio between train and test is 4:1. For example,  
-you have took 400 pictures and annotated (the number of total files is 800), after running "partition_dataset.py", you would get two folder under "images" folder shown as below:
+you have took 400 pictures and annotated (the number of total files is 800), after running "partition_dataset.py", you would get two folder under "images" folder  
+shown as below:
 >> C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo\images\train
 >> C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo\images\test
 Open these two folder, calculate if the number of files is equal to 400. If you make it, in this scenario, you would find 640 files in "train" folder and 160 files in  
