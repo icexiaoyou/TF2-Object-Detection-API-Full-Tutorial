@@ -82,3 +82,7 @@ name:'sphere'
 --------------------------------------------------------------
 Download the "label_map.pbtxt" and open it with WordPad, change according to your training job.
 For now, you have the neccessary files included "train.record", "test.record" and "label_map.pbtxt", they are all necessary components of the dataset.
+
+<Conclusion>
+Now you have get own dataset which is ready to train.
+That's all, next to '5. Generate Model'.
