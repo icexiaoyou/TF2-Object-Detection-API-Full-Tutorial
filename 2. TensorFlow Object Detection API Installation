@@ -65,36 +65,36 @@ If you do not meet any errors, and the report shows like the following:
 [       OK ] ModelBuilderTF2Test.test_create_ssd_models_from_config
 [ RUN      ] ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update
 INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update): 0.0s
-I0608 18:49:13.183754 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update): 0.0s
+I0610 09:12:08.343839 29960 test_util.py:2458] time(__main__.ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update): 0.0s
 [       OK ] ModelBuilderTF2Test.test_invalid_faster_rcnn_batchnorm_update
 [ RUN      ] ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold
 INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold): 0.0s
-I0608 18:49:13.186750 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold): 0.0s
+I0610 09:12:08.347653 29960 test_util.py:2458] time(__main__.ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold): 0.0s
 [       OK ] ModelBuilderTF2Test.test_invalid_first_stage_nms_iou_threshold
 [ RUN      ] ModelBuilderTF2Test.test_invalid_model_config_proto
 INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_invalid_model_config_proto): 0.0s
-I0608 18:49:13.188250 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_invalid_model_config_proto): 0.0s
+I0610 09:12:08.352844 29960 test_util.py:2458] time(__main__.ModelBuilderTF2Test.test_invalid_model_config_proto): 0.0s
 [       OK ] ModelBuilderTF2Test.test_invalid_model_config_proto
 [ RUN      ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
 INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_invalid_second_stage_batch_size): 0.0s
-I0608 18:49:13.190746 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_invalid_second_stage_batch_size): 0.0s
+I0610 09:12:08.356804 29960 test_util.py:2458] time(__main__.ModelBuilderTF2Test.test_invalid_second_stage_batch_size): 0.0s
 [       OK ] ModelBuilderTF2Test.test_invalid_second_stage_batch_size
 [ RUN      ] ModelBuilderTF2Test.test_session
 [  SKIPPED ] ModelBuilderTF2Test.test_session
 [ RUN      ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
 INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
-I0608 18:49:13.193742 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
+I0610 09:12:08.359605 29960 test_util.py:2458] time(__main__.ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor): 0.0s
 [       OK ] ModelBuilderTF2Test.test_unknown_faster_rcnn_feature_extractor
 [ RUN      ] ModelBuilderTF2Test.test_unknown_meta_architecture
 INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
-I0608 18:49:13.195241 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
+I0610 09:12:08.360235 29960 test_util.py:2458] time(__main__.ModelBuilderTF2Test.test_unknown_meta_architecture): 0.0s
 [       OK ] ModelBuilderTF2Test.test_unknown_meta_architecture
 [ RUN      ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
 INFO:tensorflow:time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
-I0608 18:49:13.197239 29296 test_util.py:2102] time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
+I0610 09:12:08.361369 29960 test_util.py:2458] time(__main__.ModelBuilderTF2Test.test_unknown_ssd_feature_extractor): 0.0s
 [       OK ] ModelBuilderTF2Test.test_unknown_ssd_feature_extractor
 ----------------------------------------------------------------------
-Ran 24 tests in 29.980s
+Ran 24 tests in 23.071s
 
 OK (skipped=1)
 ------------------------------------------------------------------------------------------------------------------------------------------------------------------
