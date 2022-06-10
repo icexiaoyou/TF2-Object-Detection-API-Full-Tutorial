@@ -1,4 +1,22 @@
 In this section, we start to enter the formal work, to generate own model by using a pre-trained model with a homemade dataset. For generate a new model, there are  
 five steps should be done.
 
-<Part One>
+<Part One>    Intall labelImg
+"labelImg" is an open source software, you could find them in the following url:
+https://github.com/tzutalin/labelImg
+To install it, just use the Pypi, follow the below introduction.
+Run "Anaconda prompt", and type the below command:
+$ activate tensorflow
+$ pip install labelImg
+
+<Part Two>    Take Pictures
+Accoding to Wiki, Object Detection is a computer technology related to computer vision and image processing that deals with detecting instances of semantic objects  
+of a certain class, also used in tracking objects.
+For detecting the target object (or name "class"), computer needs a model which trained by lots of pictures with annotations. Therefore, taking lots of pictures is  
+the basement to tell computer "what's this" and "where's it".
+For the newer who follow this essay, I recommand to use the following principles to take pictures:
+a. size       rectangle, more than 640x640 less than 1024x1024, could be downscaled from high resolution to low resolution
+b. contrast   high contrast, object shoule be well distinguished from background
+c. angle      depends on the relative position of the camera and the object
+d. light      be as consistent as possible with the testing environment
+e. count      under the above conditions, an object (or name "a class") needs unless 150 pictures (my experience, for reference only)
