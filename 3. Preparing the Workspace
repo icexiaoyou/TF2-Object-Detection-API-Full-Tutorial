@@ -40,4 +40,13 @@ is pasted from the follow directory:
 
 <dataset>
 We want a "good" model to help us solve the specific problem, but things could not be easy at the beginning. The quality of exported models depends on whether  
-the pretrained model and dataset are suitable. To the newer, chasing
+the pretrained model and dataset are suitable. To the newer, chasing a "super" model is meaningless, on the contrary, choosing a little object and a high contrast  
+background to take hundreds of photos with single camera angle. However, making more than a dataset is neccessary, save the old dataset and adjust them according  
+to the performance of "exported-model".
+Therefore, I recommand to save your datasets (the format is Pascal VOC) in the folder, name them as "dataset_MonDay" like "dataset_0501".
+
+<readme> [Optional]
+This is a record of the entire project.
+"debug" is a text to record and organize all errors in the training process.
+"commands" is a text to record the commands based on your own computer environment, this could saves a lot of time from repetitive tasks.
+"tensorboard-pic" is to save the screenshot pictures from Tensorboard in different training task, for evaluating and choosing the most efective model.
