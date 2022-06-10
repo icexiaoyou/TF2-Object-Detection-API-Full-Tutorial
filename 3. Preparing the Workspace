@@ -50,3 +50,7 @@ This is a record of the entire project.
 "debug" is a text to record and organize all errors in the training process.
 "commands" is a text to record the commands based on your own computer environment, this could saves a lot of time from repetitive tasks.
 "tensorboard-pic" is to save the screenshot pictures from Tensorboard in different training task, for evaluating and choosing the most efective model.
+
+<Conclusion>
+Now you have done the pre-work.
+That's all, next to '5. Generate Model'.
