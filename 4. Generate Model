@@ -27,5 +27,58 @@ Using labelImg to annotate your pictures. It is noting that we would use .xml wh
 Thanks for tzutalin's work, lableImg is really easy to be used, and you could learn how to use it in the below url:
 https://github.com/tzutalin/labelImg
 Therefore, this essay would pass the details of using labelImg.
+After annotating, put the pictures with .xml (annotation) files into the below directory:
+>> Tensorflow\workspace\training_demo\images
 
 <Part Four>   Generate Dataset
+From now, we need to configure and use the scripts.
+On your computer, open the below folder:
+>> Tensorflow\workspace\training_demo\scripts
+You could find two folder named "pre-process" and "process". "pre-process" contains "partition_dataset.py" and "generate_tfrecord.py", first is to partition the  
+datas, deviding the pictures with .xml into "train" folder and "test" folder.
+In detail, the process of generating dataset could be summarized as following:
+a. partition dataset
+Run "Anaconda prompt", type the below commands:
+$ activate tensorflow
+$ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
+$ python scripts\pre-process\partition_dataset.py -i images -r 0.2 -x
+See the final commands, it means that partition the picetures with annotation from "images" folder, and the ratio between train and test is 4:1. For example,  
+you have took 400 pictures and annotated (the number of total files is 800), after running "partition_dataset.py", you would get two folder under "images" folder shown as below:
+>> C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo\images\train
+>> C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo\images\test
+Open these two folder, calculate if the number of files is equal to 400. If you make it, in this scenario, you would find 640 files in "train" folder and 160 files in  
+"test" folder.
+The final commands should be changed according to the actual situation by yourself. You could follow the introduction of the original author (below url) or open  
+"partition_dataset.py" and see the detail.
+https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#configuring-a-training-job
+b. generate tfrecord
+You do not know what is 'tfrecord' now, or you could learn it in Tensorflow Official Website.
+Now we start to generate tfrecord.
+Run "Anaconda prompt", type the below commands:
+$ activate tensorflow
+$ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
+$ python scripts\pre-process\generate_tfrecord.py -x images\train -l annotations\label_map.pbtxt -o annotations\train.record
+$ python scripts\pre-process\generate_tfrecord.py -x images\test -l annotations\label_map.pbtxt -o annotations\test.record
+After taht, you could find two record files have generated in:
+>> Tensorflow\workspace\training_demo\annotations
+c. change "label_map.pbtxt"
+This file numbers the objects to be identified, its format is:
+
+--------------------------------------------------------------
+item{
+id:1
+name:'cube'
+}
+
+item{
+id:2
+name:'cylinder'
+}
+
+item{
+id:3
+name:'sphere'
+}
+--------------------------------------------------------------
+
+Download the label_map.pbtxt and open it with WordPad, change according to your training job.
