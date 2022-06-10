@@ -1,5 +1,5 @@
-In this section, we start to enter the formal work, to generate own model by using a pre-trained model with a homemade dataset. For generate a new model, there are  
-five steps should be done.
+From this section, we start to enter the formal work, to generate dataset and generate model. 
+Generating dataset is to attain "train.record" and "test.record", by taking photos and using labelImg to annotate them, running scripts to get the target file format.
 
 <Part One>    Intall labelImg
 "labelImg" is an open source software, you could find them in the following url:
@@ -82,5 +82,3 @@ name:'sphere'
 --------------------------------------------------------------
 Download the "label_map.pbtxt" and open it with WordPad, change according to your training job.
 For now, you have the neccessary files included "train.record", "test.record" and "label_map.pbtxt", they are all necessary components of the dataset.
-
-<Part Five>   Download the Pre-trained Model
