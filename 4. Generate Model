@@ -63,7 +63,6 @@ After taht, you could find two record files have generated in:
 >> Tensorflow\workspace\training_demo\annotations
 c. change "label_map.pbtxt"
 This file numbers the objects to be identified, its format is:
-
 --------------------------------------------------------------
 item{
 id:1
@@ -80,5 +79,7 @@ id:3
 name:'sphere'
 }
 --------------------------------------------------------------
+Download the "label_map.pbtxt" and open it with WordPad, change according to your training job.
+For now, you have the neccessary files included "train.record", "test.record" and "label_map.pbtxt", they are all necessary components of the dataset.
 
-Download the label_map.pbtxt and open it with WordPad, change according to your training job.
+<Part Five>   Download the Pre-trained Model
