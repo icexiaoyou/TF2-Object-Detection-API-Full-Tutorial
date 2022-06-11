@@ -1,1 +1,15 @@
-In "3. Prepare "
+In "3. Prepare the Workspace", we have mentioned that the training job needs a pre-trained model with our own dataset. As a general user, we do not make wheels but use  
+it directly. Therefore, in this section, we would choose a suitable pre-trained model and use our own dataset to generate a new one.
+
+<Part One>    Download Pre-Trained Model
+Here is TensorFlow 2 Detection Model Zoo, it contains the most popular pre-tained model. The download link is:
+https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md
+Open the page, and you could find abot 40 models in list, I choose "SSD ResNet50 V1 FPN 640x640 (RetinaNet50)" firstly and follow sglvladi's guide as bolow:
+https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#configuring-a-training-job
+It works!
+But now I use "Faster R-CNN ResNet50 V1 640x640" because I want to offer you another case, this model work effectly with my dataset: to detect three different shapes of 
+three-dimensional figures which have three colors.
+After download "Faster R-CNN ResNet50 V1 640x640", you would get a zip named "faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.tar.gz", unzip it and put it in:
+>> Tensorflow\workspace\training_demo\pre-trained-models
+
+<Part Two>    
