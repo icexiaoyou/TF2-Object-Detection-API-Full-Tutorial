@@ -12,4 +12,23 @@ three-dimensional figures which have three colors.
 After download "Faster R-CNN ResNet50 V1 640x640", you would get a zip named "faster_rcnn_resnet50_v1_640x640_coco17_tpu-8.tar.gz", unzip it and put it in:
 >> Tensorflow\workspace\training_demo\pre-trained-models
 
-<Part Two>    
+<Part Two>    Configure Pipeline
+Open "faster_rcnn_resnet50_v1_640x640_coco17_tpu-8", there are three files under this folder, now let me introduce what are they:
+"checkpoint" : Record key information about the training process. During a training job, this folder would build several file, the format is "ckpt-*.data-*****-of-*****"  
+and "ckpt-*.index". These files help us to load and evaluate the process model.
+"saved_model" : A format of exported model recommanded by Tensorflow Official. Once our training job finished, we need this folder to export the final model.
+"pipeline.config" : Support users to configure their training jobs according to their own dataset, computer and expected goal.
+Now we begin to configure "pipeline.config". Copy this file and paste into "models\my_faster_rcnn_resnet50_v1". In detail, follow the below step:
+a. Copy "pipeline.config" from "Tensorflow\workspace\training_demo\pre-trained-models\faster_rcnn_resnet50_v1_640x640_coco17_tpu-8"
+b. Cd "Tensorflow\workspace\training_demo\models" and create a new folder named "my_faster_rcnn_resnet50_v1"
+c. Paste "pipeline.config" into "Tensorflow\workspace\training_demo\models\my_faster_rcnn_resnet50_v1"
+---------------------------------------------------------------------------------
+Open this file and focus on the below line:
+line 10     num_classes: 90
+line 93     batch_size: 64
+line 126    label_map_path: "PATH_TO_BE_CONFIGURED/label_map.txt"
+line 128    input_path: "PATH_TO_BE_CONFIGURED/train2017-?????-of-00256.tfrecord"
+line 139    label_map_path: "PATH_TO_BE_CONFIGURED/label_map.txt"
+line 143    input_path: "PATH_TO_BE_CONFIGURED/val2017-?????-of-00032.tfrecord"
+---------------------------------------------------------------------------------
+For 
