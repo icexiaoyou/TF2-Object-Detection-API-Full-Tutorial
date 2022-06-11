@@ -94,4 +94,32 @@ I0603 11:21:31.471458 19816 model_lib_v2.py:708] {'Loss/BoxClassifierLoss/classi
 ------------------------------------------------------------------------------------------------------------
 It means that the traing job has began, this may spend more than one hours until the steps of training up to 25000.
 
-<Part Four>  Monitor Training 
+<Part Four>  Monitor Training Job through Tensorboard
+Tensorboard is an effective tool offered by Tensorflow Official. You could click below url to learn the details of it:
+https://www.tensorflow.org/tensorboard
+Use this configured pre-trained model to train your own dataset, does the training job perform good? Would we could get a well performance model? Should we optimize 
+our dataset? The answer may lie in TensorBoard.
+When the training job is ongoing, you could follow below steps to monitor the training job:
+a. Run a new (don't close Part Three cmd!) "Anaconda prompt"
+b. Type the commands as following:
+$ activate tensorflow
+$ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
+$ tensorboard --logdir=models\my_faster_rcnn_resnet50_v1
+c. Open a browser and copy the url:
+http://localhost:6006/
+d. Monitor the Training job, especially focus on last two images named "Loss_total_loss" and "learning_rate".
+[Recommand] After the training job finished, download these two .svg and save in:
+>> Tensorflow\workspace\readme
+The reason for saving these two images is that we can compare the performance of different training tasks to guide us to optimize the dataset or choose a better  
+pre-trained model.
+
+<Part Five>  
+
+
+
+
+
+
+
+
+
