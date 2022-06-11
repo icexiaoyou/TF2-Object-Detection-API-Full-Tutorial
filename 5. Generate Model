@@ -93,3 +93,5 @@ I0603 11:21:31.471458 19816 model_lib_v2.py:708] {'Loss/BoxClassifierLoss/classi
  'learning_rate': 0.0159997}
 ------------------------------------------------------------------------------------------------------------
 It means that the traing job has began, this may spend more than one hours until the steps of training up to 25000.
+
+<Part Four>  Monitor Training 
