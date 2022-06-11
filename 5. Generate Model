@@ -31,4 +31,21 @@ line 128    input_path: "PATH_TO_BE_CONFIGURED/train2017-?????-of-00256.tfrecord
 line 139    label_map_path: "PATH_TO_BE_CONFIGURED/label_map.txt"
 line 143    input_path: "PATH_TO_BE_CONFIGURED/val2017-?????-of-00032.tfrecord"
 ---------------------------------------------------------------------------------
-For 
+"num_classes" : Depends on how many objects(classes). For me, I want the model could distinguish three different shapes of three-dimensional figures.
+"batch_size" : Affects the degree of optimization and speed of the model. For me, my computer's performance is low, so I have to reduce it. Possibly, it always more  
+than 8 and less than 32.
+"label_map_path" : It have been changed in "4. Generate Dataset", this part would pass it.
+"input_path" : Point to the storage address of 'train.record' and 'test.record'.
+-----------------------------------------------------------------------------------------------------------------
+My configuration is:
+line 10     num_classes: 3
+line 93     batch_size: 1
+line 126    label_map_path: "C:/Users/yjz/Desktop/Tensorflow/workspace/training_demo/annotations/label_map.pbtxt"
+line 128    input_path: "C:/Users/yjz/Desktop/Tensorflow/workspace/training_demo/annotations/train.record"
+line 139    label_map_path: "C:/Users/yjz/Desktop/Tensorflow/workspace/training_demo/annotations/label_map.pbtxt"
+line 143    input_path: "C:/Users/yjz/Desktop/Tensorflow/workspace/training_demo/annotations/test.record"
+-----------------------------------------------------------------------------------------------------------------
+Notice: Using '/' not '\', because '\' is escape character in python, using '\' may lead a unexpected error!
+
+<Part Three>    Start Training
+Finally we start to training!
