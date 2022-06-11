@@ -113,13 +113,25 @@ d. Monitor the Training job, especially focus on last two images named "Loss_tot
 The reason for saving these two images is that we can compare the performance of different training tasks to guide us to optimize the dataset or choose a better  
 pre-trained model.
 
-<Part Five>  
+<Part Five>  Export and Verify Trained Model
+This is the final step of the whole tutorial.
+When the training job finished, we should export the trained model and verify its performance.
+Firstly, type below commands with "Anaconda prompt" to export our trained model:
+$ activate tensorflow
+$ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
+$ python scripts\process\exporter_main_v2.py --input_type image_tensor --pipeline_config_path models\my_faster_rcnn_resnet50_v1\pipeline.config  
+--trained_checkpoint_dir models\my_faster_rcnn_resnet50_v1\ --output_directory exported-models\my_model
+This operation usually completes within one minute.
+After that, you could find a new folder named "my_model" which contains "checkpoint", "saved_model" and "pipeline.config". Open "checkpoint" folder, you could  
+find "ckpt-0" files, it means that our trained model could be loaded to a new round of training.
+Secondly, record a test video about the object detection task and put it in:
+>> Tensorflow\workspace\training_demo\verify-video
+Thanks to abdelrahman-gaber's job, we could verify our model with a simple command:
+$ python scripts\process\detect_objects.py --model_path exported-models/my_model/saved_model --path_to_labelmap annotations/label_map.pbtxt --threshold 0.5  
+--video_path verify-video\verify_video_0607_d.mp4 --video_input
+And here is his repository: https://github.com/abdelrahman-gaber/tf2-object-detection-api-tutorial
+When you run the above command, A window with the video playing will be opened, and you could check the performance of the trained model, i.e. whether the model  
+can accurately detect your target object.
 
-
-
-
-
-
-
-
-
+<Conclusion>
+That's all. Thanks for your reading and would you give me a STAR?
