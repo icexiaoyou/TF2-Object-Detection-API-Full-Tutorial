@@ -45,7 +45,51 @@ line 128    input_path: "C:/Users/yjz/Desktop/Tensorflow/workspace/training_demo
 line 139    label_map_path: "C:/Users/yjz/Desktop/Tensorflow/workspace/training_demo/annotations/label_map.pbtxt"
 line 143    input_path: "C:/Users/yjz/Desktop/Tensorflow/workspace/training_demo/annotations/test.record"
 -----------------------------------------------------------------------------------------------------------------
-Notice: Using '/' not '\', because '\' is escape character in python, using '\' may lead a unexpected error!
+Notice: Using '/' not '\', because '\' is escape character in python, using '\' may lead to unexpected errors!
 
 <Part Three>    Start Training
-Finally we start to training!
+Finally we start training!
+Confirm you have downloaded the 'scripts' and put it in:
+>> Tensorflow\workspace\training_demo
+as
+>> Tensorflow\workspace\training_demo\scripts
+To start your training job, just run "Anaconda prompt" and type:
+$ activate tensorflow
+$ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
+$ python scripts\process\model_main_tf2.py --model_dir=models\my_faster_rcnn_resnet50_v1 --pipeline_config_path=models\my_faster_rcnn_resnet50_v1\pipeline.config
+If you see the some report as following:
+------------------------------------------------------------------------------------------------------------
+INFO:tensorflow:Step 100 per-step time 0.565s
+I0603 11:21:09.051827 19816 model_lib_v2.py:705] Step 100 per-step time 0.565s
+INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.21693519,
+ 'Loss/BoxClassifierLoss/localization_loss': 0.2994723,
+ 'Loss/RPNLoss/localization_loss': 0.0028177896,
+ 'Loss/RPNLoss/objectness_loss': 0.010048698,
+ 'Loss/regularization_loss': 0.0,
+ 'Loss/total_loss': 0.529274,
+ 'learning_rate': 0.014666351}
+I0603 11:21:09.067449 19816 model_lib_v2.py:708] {'Loss/BoxClassifierLoss/classification_loss': 0.21693519,
+ 'Loss/BoxClassifierLoss/localization_loss': 0.2994723,
+ 'Loss/RPNLoss/localization_loss': 0.0028177896,
+ 'Loss/RPNLoss/objectness_loss': 0.010048698,
+ 'Loss/regularization_loss': 0.0,
+ 'Loss/total_loss': 0.529274,
+ 'learning_rate': 0.014666351}
+INFO:tensorflow:Step 200 per-step time 0.224s
+I0603 11:21:31.471458 19816 model_lib_v2.py:705] Step 200 per-step time 0.224s
+INFO:tensorflow:{'Loss/BoxClassifierLoss/classification_loss': 0.49190006,
+ 'Loss/BoxClassifierLoss/localization_loss': 0.080457255,
+ 'Loss/RPNLoss/localization_loss': 0.19511494,
+ 'Loss/RPNLoss/objectness_loss': 0.12774888,
+ 'Loss/regularization_loss': 0.0,
+ 'Loss/total_loss': 0.8952211,
+ 'learning_rate': 0.0159997}
+I0603 11:21:31.471458 19816 model_lib_v2.py:708] {'Loss/BoxClassifierLoss/classification_loss': 0.49190006,
+ 'Loss/BoxClassifierLoss/localization_loss': 0.080457255,
+ 'Loss/RPNLoss/localization_loss': 0.19511494,
+ 'Loss/RPNLoss/objectness_loss': 0.12774888,
+ 'Loss/regularization_loss': 0.0,
+ 'Loss/total_loss': 0.8952211,
+ 'learning_rate': 0.0159997}
+------------------------------------------------------------------------------------------------------------
+It means that the traing job has began, this may spend more than one hours until the steps of training up to 25000.
