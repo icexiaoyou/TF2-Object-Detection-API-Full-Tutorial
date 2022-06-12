@@ -1,4 +1,4 @@
-# tensorflow-objection-detection-api-tutorial
+# tensorflow-object-detection-api-tutorial
 The newest version of Tensorflow Objection Detection API Installation Tutorial, written by icexiaoyou based on the official one.
 
 Here is the key information.  
