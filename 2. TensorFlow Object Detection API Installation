@@ -5,6 +5,7 @@ models(the most important composition in this section) and the other related API
 I downloaded it on May 30, 2022 and saved it on my Google Drive as following:
 https://drive.google.com/drive/folders/1C2jiSjEkfY_olasT7E9qkJpiyp51yGZZ?usp=sharing    ......(1)
 In the above path, 'protoc-3.19.4-win64.zip' is contained.
+Also, you could download them in this repository directly.
 
 <Part One>    Downloading the TensorFlow Model Garden
 Create a folder name 'Tensorflow', download the models-master form the google drive sharing link (1).
