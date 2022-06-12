@@ -9,13 +9,9 @@ OS            Windows 11 (works on Windows 10 too)
 
 There are three sections of this repository.  
 
-First, the introdections which contains 6 texts, including  
-0. Reference
-1. Anaconda & Tensorflow Installation
-2. TensorFlow Object Detection API Installation
-3. Prepare the Workspace
-4. Generate Dataset
-5. Generate Model
+First, the introdections which contains 6 texts, including "0. Reference", "1. Anaconda & Tensorflow Installation",  
+"2. TensorFlow Object Detection API Installation", "3. Prepare the Workspace", "4. Generate Dataset",  
+"5. Generate Model".
 You could follow these files to learn about how to build the environment and using tensorflow object detection API.
 
 Second, "models" comes from Tensorflow Official Github, the url is: https://github.com/tensorflow/models
