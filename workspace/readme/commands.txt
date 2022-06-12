@@ -1,0 +1,25 @@
+$ activate tensorflow
+$ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
+
+1、Partition the Dataset
+$ python scripts\pre-process\partition_dataset.py -i images -r 0.2 -x
+
+2、Create *.xml to *.record
+（1）生成train.record
+$ python scripts\pre-process\generate_tfrecord.py -x images\train -l annotations\label_map.pbtxt -o annotations\train.record
+（2）生成test.record
+$ python scripts\pre-process\generate_tfrecord.py -x images\test -l annotations\label_map.pbtxt -o annotations\test.record
+
+3、Training the Model
+$ python scripts\process\model_main_tf2.py --model_dir=models\my_faster_rcnn_resnet50_v1 --pipeline_config_path=models\my_faster_rcnn_resnet50_v1\pipeline.config
+
+4、Monitor Training Job Progress using TensorBoard with new Termanal
+$ activate tensorflow
+$ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
+$ tensorboard --logdir=models\my_faster_rcnn_resnet50_v1
+
+5、Exporting a Trained Model
+python scripts\process\exporter_main_v2.py --input_type image_tensor --pipeline_config_path models\my_faster_rcnn_resnet50_v1\pipeline.config --trained_checkpoint_dir models\my_faster_rcnn_resnet50_v1\ --output_directory exported-models\my_model
+
+6、Verify Trained Model with Video
+python scripts\process\detect_objects.py --model_path exported-models/my_model/saved_model --path_to_labelmap annotations/label_map.pbtxt --threshold 0.5 --video_path verify-video\verify_video_0607_d.mp4 --video_input
