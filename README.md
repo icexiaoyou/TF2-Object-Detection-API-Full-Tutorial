@@ -1,5 +1,5 @@
-# tensorflow-object-detection-tutorial
-The newest version of Tensorflow Objection Detection API Installation Tutorial, written by icexiaoyou based on the official one.
+# TF2-Object-Detection-API-Tutorial
+The newest version of Tensorflow Objection Detection API Installation and Using Tutorial, written by icexiaoyou based on the official one.
 
 Here is the key information.  
 Anaconda      lastest-release-by-May 30  
