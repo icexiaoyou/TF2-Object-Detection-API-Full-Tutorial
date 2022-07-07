@@ -127,7 +127,7 @@ find "ckpt-0" files, it means that our trained model could be loaded to a new ro
 Secondly, record a test video about the object detection task and put it in:
 >> Tensorflow\workspace\training_demo\verify-video
 Thanks to abdelrahman-gaber's job, we could verify our model with a simple command:
-$ python scripts\process\detect_objects.py --model_path exported-models\my_model\saved_model --path_to_labelmap annotations/label_map.pbtxt --threshold 0.5  
+$ python scripts\process\detect_objects.py --model_path exported-models\my_model\saved_model --path_to_labelmap annotations\label_map.pbtxt --threshold 0.5  
 --video_path verify-video\verify_video_0607_d.mp4 --video_input
 And here is his repository: https://github.com/abdelrahman-gaber/tf2-object-detection-api-tutorial
 When you run the above command, A window with the video playing will be opened, and you could check the performance of the trained model, i.e. whether the model  
