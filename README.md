@@ -1,25 +1,46 @@
-# TF2-Object-Detection-API-Tutorial
-The newest version of Tensorflow Objection Detection API Installation and Using Tutorial, written by icexiaoyou based on the official one.
+﻿# TensorFlow 2 Object Detection API Tutorial
 
-Here is the key information.  
-Anaconda      lastest-release-by-May 30  
-Python        3.9.12  
-Tensorflow    2.9.1  
-OS            Windows 11 (works on Windows 10 too)
+A maintained Windows and Conda workflow for fine-tuning TensorFlow 2 Object Detection API models on a Pascal VOC dataset. It replaces the pinned 2022 environment, global `PYTHONPATH`, and manual system-wide Protobuf installation.
 
-There are three sections of this repository.  
+The tracked `models/` directory is an archived snapshot retained for historical reference. New work uses a fresh clone of the official TensorFlow Model Garden under `third_party/models`, installed inside the Conda environment.
 
-First, the introdections which contains 6 texts, including "0. Reference", "1. Anaconda & Tensorflow Installation",  
-"2. TensorFlow Object Detection API Installation", "3. Prepare the Workspace", "4. Generate Dataset",  
-"5. Generate Model".
-You could follow these files to learn about how to build the environment and using tensorflow object detection API.
+## 1. Create the environment
 
-Second, "models" comes from Tensorflow Official Github, the url is: https://github.com/tensorflow/models  
-Why did I download and save a past version? Because each part of using TF2-Obj-Dec-API needs the suppot of suitable version.
+TensorFlow is installed from its official pip wheels inside Conda. This project defaults to CPU execution; no CUDA, cuDNN, or GPU setup is required.
 
-Third, "protoc-3.19.4-win64" comes from https://github.com/protocolbuffers/protobuf/releases  
-It is one of the most important part to build the environment.
+```powershell
+conda env create -f environment.yml
+conda activate tf2-object-detection
+```
 
-Forth, "workspace" is the main folder contains "training_demo". "training_demo" makes your training job become easier.
+## 2. Install Object Detection API
 
-Thanks for your reading, please give me a STAR!
+```powershell
+powershell -ExecutionPolicy Bypass -File scripts/setup_object_detection.ps1
+```
+
+The script clones the latest Model Garden, compiles protobuf definitions, installs the API into the active environment, and runs the official model-builder test. Use `-SkipTests` only when the installation has already been verified.
+
+## 3. Prepare data
+
+Place each image beside its Pascal VOC XML annotation in `workspace/training_demo/images`. Split and create records with explicit paths:
+
+```powershell
+cd workspace/training_demo
+python scripts/pre-process/partition_dataset.py --image-dir images --test-ratio 0.2 --copy-xml
+python scripts/pre-process/generate_tfrecord.py --xml-dir images/train --image-dir images/train --labels-path annotations/label_map.pbtxt --output-path annotations/train.record
+python scripts/pre-process/generate_tfrecord.py --xml-dir images/test --image-dir images/test --labels-path annotations/label_map.pbtxt --output-path annotations/test.record
+```
+
+## 4. Train and export
+
+Download a model and matching `pipeline.config` from the official [TF2 Detection Model Zoo](https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/tf2_detection_zoo.md). Set the model path, TFRecord paths, label-map path, batch size, class count, and fine-tune checkpoint in that configuration.
+
+Then run the installed Model Garden commands from the repository root:
+
+```powershell
+python third_party/models/research/object_detection/model_main_tf2.py --pipeline_config_path=workspace/training_demo/models/my_model/pipeline.config --model_dir=workspace/training_demo/models/my_model --alsologtostderr
+python third_party/models/research/object_detection/exporter_main_v2.py --input_type=image_tensor --pipeline_config_path=workspace/training_demo/models/my_model/pipeline.config --trained_checkpoint_dir=workspace/training_demo/models/my_model --output_directory=workspace/training_demo/exported-models/my_model
+```
+
+The deployment helper remains in `workspace/training_demo/scripts/process`. All project scripts support `--help`.

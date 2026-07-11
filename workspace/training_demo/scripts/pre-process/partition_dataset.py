@@ -1,98 +1,47 @@
-""" usage: partition_dataset.py [-h] [-i IMAGEDIR] [-o OUTPUTDIR] [-r RATIO] [-x]
-
-Partition dataset of images into training and testing sets
-
-optional arguments:
-  -h, --help            show this help message and exit
-  -i IMAGEDIR, --imageDir IMAGEDIR
-                        Path to the folder where the image dataset is stored. If not specified, the CWD will be used.
-  -o OUTPUTDIR, --outputDir OUTPUTDIR
-                        Path to the output folder where the train and test dirs should be created. Defaults to the same directory as IMAGEDIR.
-  -r RATIO, --ratio RATIO
-                        The ratio of the number of test images over the total number of images. The default is 0.1.
-  -x, --xml             Set this flag if you want the xml annotation files to be processed and copied over.
-"""
-import os
-import re
-from shutil import copyfile
+﻿"""Split a flat annotated image directory into reproducible train and test directories."""
+from __future__ import annotations
 import argparse
-import math
 import random
+import shutil
+from pathlib import Path
 
+EXTENSIONS = {".jpg", ".jpeg", ".png", ".bmp", ".webp"}
 
-def iterate_dir(source, dest, ratio, copy_xml):
-    source = source.replace('\\', '/')
-    dest = dest.replace('\\', '/')
-    train_dir = os.path.join(dest, 'train')
-    test_dir = os.path.join(dest, 'test')
+def parse_args() -> argparse.Namespace:
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--image-dir", "-i", type=Path, default=Path.cwd())
+    parser.add_argument("--output-dir", "-o", type=Path)
+    parser.add_argument("--test-ratio", "--ratio", "-r", type=float, default=0.2)
+    parser.add_argument("--seed", type=int, default=42)
+    parser.add_argument("--copy-xml", "--xml", "-x", action="store_true")
+    parser.add_argument("--overwrite", action="store_true")
+    return parser.parse_args()
 
-    if not os.path.exists(train_dir):
-        os.makedirs(train_dir)
-    if not os.path.exists(test_dir):
-        os.makedirs(test_dir)
+def main() -> None:
+    args = parse_args()
+    if not 0 < args.test_ratio < 1:
+        raise SystemExit("--test-ratio must be between 0 and 1.")
+    output = args.output_dir or args.image_dir
+    if output == args.image_dir:
+        images = [path for path in args.image_dir.iterdir() if path.suffix.lower() in EXTENSIONS]
+    else:
+        images = [path for path in args.image_dir.iterdir() if path.suffix.lower() in EXTENSIONS]
+    if not images:
+        raise SystemExit(f"No images found in {args.image_dir}")
+    for split in ("train", "test"):
+        target = output / split
+        if target.exists() and any(target.iterdir()) and not args.overwrite:
+            raise SystemExit(f"{target} is not empty. Use --overwrite to replace files.")
+        target.mkdir(parents=True, exist_ok=True)
+    random.Random(args.seed).shuffle(images)
+    test_count = max(1, round(len(images) * args.test_ratio))
+    for split, files in (("test", images[:test_count]), ("train", images[test_count:])):
+        for image in files:
+            shutil.copy2(image, output / split / image.name)
+            annotation = image.with_suffix(".xml")
+            if args.copy_xml and annotation.exists():
+                shutil.copy2(annotation, output / split / annotation.name)
+    print(f"Split {len(images)} images into {output / 'train'} and {output / 'test'}")
 
-    images = [f for f in os.listdir(source)
-              if re.search(r'([a-zA-Z0-9\s_\\.\-\(\):])+(?i)(.jpg|.jpeg|.png)$', f)]
-
-    num_images = len(images)
-    num_test_images = math.ceil(ratio*num_images)
-
-    for i in range(num_test_images):
-        idx = random.randint(0, len(images)-1)
-        filename = images[idx]
-        copyfile(os.path.join(source, filename),
-                 os.path.join(test_dir, filename))
-        if copy_xml:
-            xml_filename = os.path.splitext(filename)[0]+'.xml'
-            copyfile(os.path.join(source, xml_filename),
-                     os.path.join(test_dir,xml_filename))
-        images.remove(images[idx])
-
-    for filename in images:
-        copyfile(os.path.join(source, filename),
-                 os.path.join(train_dir, filename))
-        if copy_xml:
-            xml_filename = os.path.splitext(filename)[0]+'.xml'
-            copyfile(os.path.join(source, xml_filename),
-                     os.path.join(train_dir, xml_filename))
-
-
-def main():
-
-    # Initiate argument parser
-    parser = argparse.ArgumentParser(description="Partition dataset of images into training and testing sets",
-                                     formatter_class=argparse.RawTextHelpFormatter)
-    parser.add_argument(
-        '-i', '--imageDir',
-        help='Path to the folder where the image dataset is stored. If not specified, the CWD will be used.',
-        type=str,
-        default=os.getcwd()
-    )
-    parser.add_argument(
-        '-o', '--outputDir',
-        help='Path to the output folder where the train and test dirs should be created. '
-             'Defaults to the same directory as IMAGEDIR.',
-        type=str,
-        default=None
-    )
-    parser.add_argument(
-        '-r', '--ratio',
-        help='The ratio of the number of test images over the total number of images. The default is 0.1.',
-        default=0.1,
-        type=float)
-    parser.add_argument(
-        '-x', '--xml',
-        help='Set this flag if you want the xml annotation files to be processed and copied over.',
-        action='store_true'
-    )
-    args = parser.parse_args()
-
-    if args.outputDir is None:
-        args.outputDir = args.imageDir
-
-    # Now we are ready to start the iteration
-    iterate_dir(args.imageDir, args.outputDir, args.ratio, args.xml)
-
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

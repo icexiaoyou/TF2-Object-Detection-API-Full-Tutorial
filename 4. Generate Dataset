@@ -1,88 +1,9 @@
-From this section, we start to enter the formal work, to generate dataset and generate model. 
-Generating dataset is to attain "train.record" and "test.record", by taking photos and using labelImg to annotate them, running scripts to get the target file format.
+﻿# Dataset generation
 
-<Part One>    Intall labelImg
-"labelImg" is an open source software, you could find them in the following url:
-https://github.com/tzutalin/labelImg
-To install it, just use the Pypi, follow the below introduction.
-Run "Anaconda prompt", and type the below command:
-$ activate tensorflow
-$ pip install labelImg
-While the installation finished, you get a powerful application to annotate your pictures.
+Put each image beside its Pascal VOC XML annotation under workspace/training_demo/images, then run:
 
-<Part Two>    Take Pictures
-Accoding to Wiki, Object Detection is a computer technology related to computer vision and image processing that deals with detecting instances of semantic objects  
-of a certain class, also used in tracking objects.
-For detecting the target object (or name "class"), computer needs a model which trained by lots of pictures with annotations. Therefore, taking lots of pictures is  
-the basement to tell computer "what's this" and "where's it".
-For the newer who follow this essay, I recommand to use the following principles to take pictures:
-a. size       rectangle, more than 640x640 less than 1024x1024, could be downscaled from high resolution to low resolution
-b. contrast   high contrast, object shoule be well distinguished from background
-c. angle      depends on the relative position of the camera and the object
-d. light      be as consistent as possible with the testing environment
-e. count      under the above conditions, an object (or name "a class") needs unless 150 pictures (my experience, for reference only)
+    python scripts/pre-process/partition_dataset.py --image-dir images --test-ratio 0.2 --copy-xml
+    python scripts/pre-process/generate_tfrecord.py --xml-dir images/train --image-dir images/train --labels-path annotations/label_map.pbtxt --output-path annotations/train.record
+    python scripts/pre-process/generate_tfrecord.py --xml-dir images/test --image-dir images/test --labels-path annotations/label_map.pbtxt --output-path annotations/test.record
 
-<Part Three>  Annotation
-Using labelImg to annotate your pictures. It is noting that we would use .xml which asks for Pascal VOC format.
-Thanks for tzutalin's work, lableImg is really easy to be used, and you could learn how to use it in the below url:
-https://github.com/tzutalin/labelImg
-Therefore, this essay would pass the details of using labelImg.
-After annotating, put the pictures with .xml (annotation) files into the below directory:
->> Tensorflow\workspace\training_demo\images
-
-<Part Four>   Generate Dataset
-From now, we need to configure and use the scripts.
-On your computer, open the below folder:
->> Tensorflow\workspace\training_demo\scripts
-You could find two folder named "pre-process" and "process". "pre-process" contains "partition_dataset.py" and "generate_tfrecord.py", first is to partition the  
-datas, deviding the pictures with .xml into "train" folder and "test" folder.
-In detail, the process of generating dataset could be summarized as following:
-a. partition dataset
-Run "Anaconda prompt", type the below commands:
-$ activate tensorflow
-$ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
-$ python scripts\pre-process\partition_dataset.py -i images -r 0.2 -x
-See the final commands, it means that partition the picetures with annotation from "images" folder, and the ratio between train and test is 4:1. For example,  
-you have took 400 pictures and annotated (the number of total files is 800), after running "partition_dataset.py", you would get two folder under "images" folder  
-shown as below:
->> C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo\images\train
->> C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo\images\test
-Open these two folder, calculate if the number of files is equal to 400. If you make it, in this scenario, you would find 640 files in "train" folder and 160 files in  
-"test" folder.
-The final commands should be changed according to the actual situation by yourself. You could follow the introduction of the original author (below url) or open  
-"partition_dataset.py" and see the detail.
-https://tensorflow-object-detection-api-tutorial.readthedocs.io/en/latest/training.html#configuring-a-training-job
-b. generate tfrecord
-You do not know what is 'tfrecord' now, or you could learn it in Tensorflow Official Website.
-Now we start to generate tfrecord.
-Run "Anaconda prompt", type the below commands:
-$ activate tensorflow
-$ cd C:\Users\yjz\Desktop\Tensorflow\workspace\training_demo
-$ python scripts\pre-process\generate_tfrecord.py -x images\train -l annotations\label_map.pbtxt -o annotations\train.record
-$ python scripts\pre-process\generate_tfrecord.py -x images\test -l annotations\label_map.pbtxt -o annotations\test.record
-After taht, you could find two record files have generated in:
->> Tensorflow\workspace\training_demo\annotations
-c. change "label_map.pbtxt"
-This file numbers the objects to be identified, its format is:
---------------------------------------------------------------
-item{
-id:1
-name:'cube'
-}
-
-item{
-id:2
-name:'cylinder'
-}
-
-item{
-id:3
-name:'sphere'
-}
---------------------------------------------------------------
-Download the "label_map.pbtxt" and open it with WordPad, change according to your training job.
-For now, you have the neccessary files included "train.record", "test.record" and "label_map.pbtxt", they are all necessary components of the dataset.
-
-<Conclusion>
-Now you have get own dataset which is ready to train.
-That's all, next to '5. Generate Model'.
+The scripts use argparse and TensorFlow 2 tf.io APIs. Run them with --help for all options.

@@ -1,0 +1,10 @@
+﻿__pycache__/
+*.py[cod]
+third_party/
+workspace/training_demo/images/train/
+workspace/training_demo/images/test/
+workspace/training_demo/annotations/*.record
+workspace/training_demo/exported-models/
+workspace/training_demo/models/*/checkpoint/
+workspace/training_demo/models/*/ckpt-*
+workspace/training_demo/models/*/events.out.tfevents.*

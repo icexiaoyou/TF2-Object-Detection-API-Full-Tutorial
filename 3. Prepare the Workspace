@@ -1,56 +1,5 @@
-This Section aims to prepare the Wokrkspace for Making Dataset, Training, Verifying, Saving and Deploying the Model.
+﻿# Workspace preparation
 
-The workspace is essentially composed of multiple folders with different functions. Based on sglvladi's work, I make some expansions to save the important scripts  
-and process text. Therefore, this section will be introduced according to the function of each file, rather than the installation steps of a certain software. 
+Use workspace/training_demo for project data, records, configurations, checkpoints, and exported models.
 
-<File Directory>
-
-Ⅰ Workspace
-  Ⅱ training_demo
-    Ⅲ __pycache__
-    Ⅲ zlibwapi.dll
-    Ⅲ images
-    Ⅲ scripts
-    Ⅲ annotations
-    Ⅲ pre-trained-models
-    Ⅲ models
-    Ⅲ exported-models
-    Ⅲ verify-video
-  Ⅱ dataset
-    Ⅲ dataset_0501
-    Ⅲ dataset_0601
-  Ⅱ readme
-    Ⅲ debug
-    Ⅲ commands
-    Ⅲ tensorboard-pic
-    
-Just like the above directory, ⅠⅡⅢ represent the folder level.
-
-<training_demo>
-These files under this folder are sorted by the time they used except "__pycache__" and "zlibapi.dll". "__pycache__" is automatically generated, "zlibapi.dll"  
-is pasted from the follow directory:
->> C:\Windows\System32\zlib123dllx64\dll_x64
-"images" contains the picture(.jpg/.png) and annotation(.xml).
-"scripts" contains the scripts of preprocessing and processing, you can find them in the repository.
-"annotations" contains "label_map.pbtxt", "train.record" and "test.record".
-"pre-trained-models" contains the models which could be download from TensorFlow 2 Detection Model Zoo.
-"models" contains "pipeline.config" which pasted from "pre-trained-models" and should be changed before our training work.
-"exported-models" contains "my_model" which have "checkpoint", "saved_model" and "pipeline.config", the resource to be loaded, saved and deployed.
-"verify-video" contains the videos which are used to verify the effective of "exported-models".
-
-<dataset>
-We want a "good" model to help us solve the specific problem, but things could not be easy at the beginning. The quality of exported models depends on whether  
-the pretrained model and dataset are suitable. To the newer, chasing a "super" model is meaningless, on the contrary, choosing a little object and a high contrast  
-background to take hundreds of photos with single camera angle. However, making more than a dataset is neccessary, save the old dataset and adjust them according  
-to the performance of "exported-model".
-Therefore, I recommand to save your datasets (the format is Pascal VOC) in the folder, name them as "dataset_MonDay" like "dataset_0501".
-
-<readme> [Optional]
-This is a record of the entire project.
-"debug" is a text to record and organize all errors in the training process.
-"commands" is a text to record the commands based on your own computer environment, this could saves a lot of time from repetitive tasks.
-"tensorboard-pic" is to save the screenshot pictures from Tensorboard in different training task, for evaluating and choosing the most efective model.
-
-<Conclusion>
-Now you have done the pre-work.
-That's all, next to '4. Generate Dataset'.
+The tracked models/ directory is an archived historical snapshot. The active Model Garden is installed separately at third_party/models by scripts/setup_object_detection.ps1, so it can be updated without changing system-wide settings.
